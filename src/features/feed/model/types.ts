@@ -1,0 +1,12 @@
+export const RANDOM_FETCH_REQUESTED = 'RANDOM_FETCH_REQUESTED';
+export const RANDOM_FETCH_RESOLVED = 'RANDOM_FETCH_RESOLVED';
+export const RANDOM_FETCH_REJECTED = 'RANDOM_FETCH_REJECTED';
+
+export const PHOTOS_FETCH_NEXT_REQUESTED = 'PHOTOS_FETCH_NEXT_REQUESTED';
+
+export const CLEAR_PHOTOS = 'CLEAR_PHOTOS';
+
+export interface IAction {
+  type: string;
+  payload?: any;
+}
