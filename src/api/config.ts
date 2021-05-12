@@ -4,7 +4,7 @@ export const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
 
 export const API_BASE = process.env.REACT_APP_API_BASE || 'https://api.unsplash.com/';
 
-export const API_RANDOM_PHOTOS = '/photos/random';
+export const API_RANDOM_PHOTOS = '/photos';
 export const API_SEARCH_PHOTOS = '/search/photos';
 export const API_TOPICS = '/topics';
 

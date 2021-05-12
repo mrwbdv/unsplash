@@ -40,9 +40,7 @@ const ButtonIcon = styled(Box)<BoxProps>`
   }
 `;
 
-export type ButtonsProps = StyledComponentProps<'button', any, StyledButtonProps, never>;
-
-export const Button = ({ leftIcon, rightIcon, children, ...props }: ButtonsProps) => (
+export const Button = ({ leftIcon, rightIcon, children, ...props }: any) => (
   <StyledButton {...props}>
     <Flex alignItems='center' justifyContent='space-between'>
       {leftIcon && (

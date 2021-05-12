@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { MainTemplate } from '../../../ui/templates';
+import { MainTemplate, Container } from '../../../ui/templates';
 import { HeaderContent } from '../organisms';
 
 export const CommonTemplate = ({
@@ -9,7 +9,11 @@ export const CommonTemplate = ({
 }: {
   header?: React.ReactNode;
   children: React.ReactNode;
-}) => <MainTemplate header={header}>{children}</MainTemplate>;
+}) => (
+  <MainTemplate header={header}>
+    <Container>{children}</Container>
+  </MainTemplate>
+);
 
 CommonTemplate.defaultProps = {
   header: <HeaderContent />,

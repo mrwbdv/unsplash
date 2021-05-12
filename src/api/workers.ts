@@ -4,9 +4,12 @@ import { call, put, select } from 'redux-saga/effects';
 export function* getRandomPhotos(): any {
   try {
     const { countToLoad } = yield select((state) => state.photosReducer);
-    const data = yield call(unsplashAPI.getRandomPhotos, countToLoad);
+    const { currentPage } = yield select((state) => state.searchReducer);
+    console.log(currentPage);
+    const data = yield call(unsplashAPI.getRandomPhotos, countToLoad, currentPage);
     console.log(data);
     yield put({ type: `RANDOM_FETCH_RESOLVED`, payload: data });
+    yield put({ type: `INC_CURRENT_PAGE` });
   } catch (error) {
     console.log(error);
   }

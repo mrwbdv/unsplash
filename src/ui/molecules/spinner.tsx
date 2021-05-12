@@ -13,7 +13,6 @@ const SpinnerWrapper = styled.div`
   width: 100%;
   height: 100%;
   position: fixed;
-  background: rgba(0, 0, 0, 0.7);
   z-index: 10;
 `;
 const SpinnerInner = styled.div`

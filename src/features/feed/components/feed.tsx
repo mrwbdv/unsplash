@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootStateOrAny } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Spinner } from '../../../ui/molecules';
-import { Container } from '../styles';
+import { PhotosContainer } from '../styles';
 import { fetchPhotos, fetchNextPagePhotos } from '../model/actions';
-import { PhotoFeedItem } from '../../feed-item/components/feed-item';
+import { PhotoFeedItem } from '../../../ui/molecules';
 
 import { IPhotoData } from '../../../api/types';
 
@@ -14,11 +14,12 @@ export const ImagesFeed = () => {
 
   useEffect(() => {
     fetchData();
-  }, [dispatch]);
+  }, []);
 
   const photos = useSelector((state: RootStateOrAny) => state.photosReducer.photos);
   const searchValue = useSelector((state: RootStateOrAny) => state.searchReducer.searchValue);
-  console.log(photos);
+  console.log(photos.length);
+
   const fetchData = () => {
     if (searchValue) {
       dispatch(fetchNextPagePhotos());
@@ -26,6 +27,15 @@ export const ImagesFeed = () => {
       dispatch(fetchPhotos());
     }
   };
+
+  const handleDownload = () => {
+    console.log('Download');
+  };
+
+  const handleFavorite = () => {
+    console.log('Favorite');
+  };
+
   return (
     <InfiniteScroll
       style={{ overflowY: 'hidden' }}
@@ -33,11 +43,16 @@ export const ImagesFeed = () => {
       hasMore={true}
       next={fetchData}
       loader={<Spinner />}>
-      <Container>
+      <PhotosContainer>
         {photos?.map(({ id, smallUrl }: IPhotoData) => (
-          <PhotoFeedItem key={id} img={smallUrl} />
+          <PhotoFeedItem
+            key={id}
+            img={smallUrl}
+            handleDownload={handleDownload}
+            handleFavorite={handleFavorite}
+          />
         ))}
-      </Container>
+      </PhotosContainer>
     </InfiniteScroll>
   );
 };
