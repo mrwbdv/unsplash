@@ -1,11 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { useInput } from '../common/hooks/useInput';
-import { searchTerms } from './model/selectors';
+import { useInput } from '../../common/hooks/useInput';
+import { searchTerms } from '../model/selectors';
 
-import { SearchForm } from '../../ui/molecules';
-import { addSearchTerm, searchPhoto } from './model/actions';
+import { SearchForm } from '../../../ui/molecules';
+import { addSearchTerm, searchPhoto } from '../model/actions';
 
 export const Search = () => {
   const dispatch = useDispatch();

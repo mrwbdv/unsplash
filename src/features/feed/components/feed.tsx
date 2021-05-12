@@ -2,12 +2,12 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootStateOrAny } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { Spinner } from '../../../ui/molecules';
-import { PhotosContainer } from '../styles';
-import { fetchPhotos, fetchNextPagePhotos } from '../model/actions';
-import { PhotoFeedItem } from '../../../ui/molecules';
+import { Spinner, PhotoFeedItem } from '../../../ui/molecules';
 
+import { fetchPhotos, fetchNextPagePhotos } from '../model/actions';
+import { addFavoritesPhoto } from '../../favorites/model/actions';
 import { IPhotoData } from '../../../api/types';
+import { GridContainer } from '../../../ui/templates';
 
 export const ImagesFeed = () => {
   const dispatch = useDispatch();
@@ -16,9 +16,9 @@ export const ImagesFeed = () => {
     fetchData();
   }, []);
 
+  //  НЕ ЗАБУДЬ СДЕЛАТЬ ЧЕРЕЗ RESELECT
   const photos = useSelector((state: RootStateOrAny) => state.photosReducer.photos);
   const searchValue = useSelector((state: RootStateOrAny) => state.searchReducer.searchValue);
-  console.log(photos.length);
 
   const fetchData = () => {
     if (searchValue) {
@@ -32,8 +32,8 @@ export const ImagesFeed = () => {
     console.log('Download');
   };
 
-  const handleFavorite = () => {
-    console.log('Favorite');
+  const handleFavorite = (id: string) => {
+    dispatch(addFavoritesPhoto(id));
   };
 
   return (
@@ -43,16 +43,17 @@ export const ImagesFeed = () => {
       hasMore={true}
       next={fetchData}
       loader={<Spinner />}>
-      <PhotosContainer>
+      <GridContainer>
         {photos?.map(({ id, smallUrl }: IPhotoData) => (
           <PhotoFeedItem
+            id={id}
             key={id}
             img={smallUrl}
             handleDownload={handleDownload}
             handleFavorite={handleFavorite}
           />
         ))}
-      </PhotosContainer>
+      </GridContainer>
     </InfiniteScroll>
   );
 };

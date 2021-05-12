@@ -4,11 +4,9 @@ import { Pages } from './pages';
 
 export const App = () => {
   return (
-    <>
-      <CommonTemplate>
-        <GlobalStyles />
-        <Pages />
-      </CommonTemplate>
-    </>
+    <CommonTemplate>
+      <GlobalStyles />
+      <Pages />
+    </CommonTemplate>
   );
 };

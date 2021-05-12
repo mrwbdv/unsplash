@@ -25,6 +25,11 @@ class UnsplashService extends HttpClient {
     return transformedData;
   };
 
+  getsinglePhoto = async (id: string) => {
+    const { data } = await this.get<IPhotoUntransformedData>(`${API_RANDOM_PHOTOS}/${id}`);
+    return this.transformData(data);
+  };
+
   getTopics = async () => {
     const { data } = await this.get<ITopicUntransformedData[]>(API_TOPICS);
     return data.map((data: any) => {

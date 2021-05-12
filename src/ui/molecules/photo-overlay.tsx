@@ -2,12 +2,13 @@ import styled from 'styled-components';
 import { Image, Icon, Button } from '../atoms';
 
 interface IProps {
+  id: string;
   img: string;
-  handleDownload: (e: React.FormEvent<HTMLFormElement>) => void;
-  handleFavorite: (e: React.FormEvent<HTMLFormElement>) => void;
+  handleDownload: () => void;
+  handleFavorite: (id: string) => void;
 }
 
-export const PhotoFeedItem = ({ img, handleDownload, handleFavorite }: IProps) => {
+export const PhotoFeedItem = ({ id, img, handleDownload, handleFavorite }: IProps) => {
   return (
     <Item>
       <ItemOverlay>
@@ -18,7 +19,7 @@ export const PhotoFeedItem = ({ img, handleDownload, handleFavorite }: IProps) =
           />
           <Button
             leftIcon={<Icon name='heart' width='24' height='24' viewBox='0 0 24 24' fill='red' />}
-            onClick={handleFavorite}
+            onClick={() => handleFavorite(id)}
           />
         </div>
       </ItemOverlay>

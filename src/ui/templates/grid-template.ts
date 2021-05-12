@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const PhotosContainer = styled.div`
+export const GridContainer = styled.div`
   width: 100%;
   margin: 2% auto;
   display: grid;
